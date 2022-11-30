@@ -3,13 +3,22 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.PathParam;
 
 
-@Path("/add")
+
+
+@Path("/calculator")
 public class CalculatorResource {
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String hello() {
-        return "Hello from RESTEasy Reactive";
+
+    @Path("add/{base}/{addition}")
+
+    public String add(@PathParam("base") String base,@PathParam("addition") String addition) {
+
+        var result = Integer.parseInt(base) + Integer.parseInt(addition);
+
+        return String.valueOf(result);
+
     }
 }
